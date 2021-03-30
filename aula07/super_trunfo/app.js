@@ -52,4 +52,28 @@ function exibirOpcoes() {
   for (const atributo in cartaJogador.atributos) {
     opcoesTexto = `<input type="radio" name="atributo" value="${atributo}"/>${atributo}`;
   }
+  opcoes.innerHTML = opcoesTexto;
+}
+
+function obtemAtributoSelecionado() {
+  var radioAtributo = document.getElementById('atributo');
+  for (let i = 0; i < radioAtributo.length; i++) {
+    if (radioAtributo[i].checked) {
+      // console.log(radioAtributo[i].value);
+      return radioAtributo[i].value;
+    }
+  }
+}
+
+function jogar() {
+  var atributoSelecionado = obtemAtributoSelecionado();
+  // console.log(atributoSelecionado);
+  if (cartaJogador.atributos[atributoSelecionado] > cartaMaquina.atributos[atributoSelecionado]) {
+    alert("Venceu a carta da máquina");
+  } else if (cartaJogador.atributos[atributoSelecionado] < cartaMaquina.atributos[atributoSelecionado]) {
+    alert("Perdeu. Carta da máquina é maior");
+  } else {
+    alert("Empatou!");
+  }
+  console.log(cartaMaquina);
 }
